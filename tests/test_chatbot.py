@@ -36,7 +36,7 @@ def test_without_history():
     print("\n>>> CASE 1: No History")
 
     response = chatbot.run(user_input)
-    # print_result("No History", user_input, response)
+    print_result("No History", user_input, response)
 
     return response
 
@@ -84,7 +84,7 @@ def test_with_history():
     print("\n>>> CASE 2: With History (4 prior turns)")
     response = chatbot.run(user_input, history=history)
     
-    # print_result("With History", user_input, response)
+    print_result("With History", user_input, response)
 
     return response
 
