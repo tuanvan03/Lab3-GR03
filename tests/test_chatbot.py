@@ -7,6 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from dotenv import load_dotenv
 from src.core.gemini_provider import GeminiProvider
+from src.core.openai_provider import OpenAIProvider
 from src.chatbot import Chatbot
 
 from src.telemetry.metrics import tracker
@@ -14,7 +15,8 @@ from src.telemetry.metrics import tracker
 load_dotenv()
 
 SEPARATOR = "=" * 60
-MODEL_ID = "gemini-2.5-flash"
+
+DEFAULT_PROVIDER = os.getenv("DEFAULT_PROVIDER", "openai")  # "openai" | "google"
 
 TEST_CASES = [
     "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu? So với TP.HCM có chênh lệch không?",
@@ -29,12 +31,20 @@ TEST_CASES = [
 ]
 
 
-def make_chatbot():
-    provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
-        api_key=os.getenv("GEMINI_API_KEY"),
+def make_provider():
+    if DEFAULT_PROVIDER == "google":
+        return GeminiProvider(
+            model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
+            api_key=os.getenv("GEMINI_API_KEY"),
+        )
+    return OpenAIProvider(
+        model_name=os.getenv("DEFAULT_MODEL", "gpt-5"),
+        api_key=os.getenv("OPENAI_API_KEY"),
     )
-    return Chatbot(llm=provider)
+
+
+def make_chatbot():
+    return Chatbot(llm=make_provider())
 
 
 def run_all_tests():
@@ -64,11 +74,7 @@ def print_result(case: str, user_input: str, response: str):
 
 def test_without_history():
     """Case 1: Single-turn, no conversation history."""
-    provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
-        api_key=os.getenv("GEMINI_API_KEY"),
-    )
-    chatbot = Chatbot(llm=provider)
+    chatbot = make_chatbot()
 
     user_input = "Giá vàng SJC hôm nay là bao nhiêu và so với DOJI thì chênh lệch bao nhiêu?"
     print("\n>>> CASE 1: No History")
@@ -81,11 +87,7 @@ def test_without_history():
 
 def test_with_history():
     """Case 2: Multi-turn, passing conversation history."""
-    provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
-        api_key=os.getenv("GEMINI_API_KEY"),
-    )
-    chatbot = Chatbot(llm=provider)
+    chatbot = make_chatbot()
 
     # Simulate prior conversation turns
     history = [

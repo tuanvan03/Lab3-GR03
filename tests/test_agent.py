@@ -6,9 +6,12 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from dotenv import load_dotenv
 from src.core.gemini_provider import GeminiProvider
+from src.core.openai_provider import OpenAIProvider
 from src.agent.agent import ReActAgent
 
 load_dotenv()
+
+DEFAULT_PROVIDER = os.getenv("DEFAULT_PROVIDER", "openai")  # "openai" | "google"
 
 TEST_CASES = [
     "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu? So với TP.HCM có chênh lệch không?",
@@ -23,12 +26,20 @@ TEST_CASES = [
 ]
 
 
-def make_agent():
-    provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
-        api_key=os.getenv("GEMINI_API_KEY"),
+def make_provider():
+    if DEFAULT_PROVIDER == "google":
+        return GeminiProvider(
+            model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
+            api_key=os.getenv("GEMINI_API_KEY"),
+        )
+    return OpenAIProvider(
+        model_name=os.getenv("DEFAULT_MODEL", "gpt-5"),
+        api_key=os.getenv("OPENAI_API_KEY"),
     )
-    return ReActAgent(llm=provider, max_steps=5)
+
+
+def make_agent():
+    return ReActAgent(llm=make_provider(), max_steps=5)
 
 
 def run_all_tests():
@@ -50,13 +61,8 @@ def run_all_tests():
 
 
 def test_agent_out_of_scrope():
-    provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
-        api_key=os.getenv("GEMINI_API_KEY"),
-    )
-
     agent = ReActAgent(
-        llm=provider,
+        llm=make_provider(),
         max_steps=5,
     )
 

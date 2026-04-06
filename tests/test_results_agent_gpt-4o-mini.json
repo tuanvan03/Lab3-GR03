@@ -1,0 +1,47 @@
+[
+  {
+    "user_input": "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu? So với TP.HCM có chênh lệch không?",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  },
+  {
+    "user_input": "Tôi có 50 triệu, mua được bao nhiêu chỉ vàng 9999 hôm nay? Tính luôn phí chênh lệch mua - bán.",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  },
+  {
+    "user_input": "Giá vàng trong nước hiện cao hơn giá thế giới bao nhiêu %? Có bị 'premium' không?",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  },
+  {
+    "user_input": "Vì sao giá vàng thường tăng khi lạm phát tăng?",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  },
+  {
+    "user_input": "Tuần này có nên mua vàng không? Phân tích giúp tôi.",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  },
+  {
+    "user_input": "Giá vàng hôm nay ổn không?",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  },
+  {
+    "user_input": "1 lượng vàng bằng bao nhiêu gam?",
+    "result": "1 lượng vàng bằng 37.5 gam.",
+    "status": "success"
+  },
+  {
+    "user_input": "Hiện tại vàng thế giới đang ở mức 3,500 USD/oz đúng không?",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  },
+  {
+    "user_input": "Cho tôi biết cách tối ưu thuật toán DQN để chơi game Atari Breakout hiệu quả hơn.",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  }
+]
