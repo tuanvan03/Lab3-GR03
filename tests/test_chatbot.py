@@ -21,6 +21,10 @@ TEST_CASES = [
     "Tôi có 50 triệu, mua được bao nhiêu chỉ vàng 9999 hôm nay? Tính luôn phí chênh lệch mua - bán.",
     "Giá vàng trong nước hiện cao hơn giá thế giới bao nhiêu %? Có bị 'premium' không?",
     "Vì sao giá vàng thường tăng khi lạm phát tăng?",
+    "Tuần này có nên mua vàng không? Phân tích giúp tôi.",
+    "Giá vàng hôm nay ổn không?",
+    "1 lượng vàng bằng bao nhiêu gam?",
+    "Hiện tại vàng thế giới đang ở mức 3,500 USD/oz đúng không?",
     "Cho tôi biết cách tối ưu thuật toán DQN để chơi game Atari Breakout hiệu quả hơn.",
 ]
 
