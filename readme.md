@@ -97,3 +97,12 @@ Hãy sử dụng script phân tích để tính toán **Aggregate Reliability** 
 > **“In the world of AI, the trace is the truth. Learn to read the logs.”**
 
 ---
+
+## Run:
+Terminal 1:
+cd k:/Lab3-GR03
+uvicorn src.api.app:app --reload --port 8000
+
+Terminal 2 — Streamlit Frontend:
+cd k:/Lab3-GR03
+streamlit run "src/front end/app.py"

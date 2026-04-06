@@ -21,7 +21,7 @@
 *Analyze a specific failure event you encountered during the lab using the logging system.*
 
 - **Problem Description**: Agent ngừng hoạt động (crashed) ngay từ iteration đầu tiên do **Parsing Error**.
-- **Log Source**: [See line 23](https://github.com/tuanvan03/Lab3-GR03/blob/main/logs/2026-04-06.log)
+- **Log Source**: [See line 163](https://github.com/tuanvan03/Lab3-GR03/blob/main/logs/2026-04-06.log)
 - **Diagnosis**: Nguyên nhân chính là **LLM (GPT-5)** không tuân thủ đúng output format mà ReAct agent yêu cầu.  
 Thay vì trả về đúng cấu trúc:
 `Thought: ...

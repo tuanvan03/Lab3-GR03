@@ -32,33 +32,32 @@ Có 1 số vấn đề như sau:
 
 - **Problem Description**: Rất nhiều câu trả lời Agent chỉ trả về "Hiện tại tôi không tư vấn về vấn đề này"
 - **Log Source**: logs/2026-04-06.log 
-- **Diagnosis**: Vấn đề nằm ở mô hình, mô hình sử dụng test lần này là GPT-4o-mini.
-- **Solution**: [How did you fix it? (e.g., updated `Thought` examples in the system prompt)]
+- **Diagnosis**: Vấn đề nằm ở mô hình, mô hình sử dụng test lần này là GPT-4o-mini. Mô hình này ko phân biệt được câu hỏi có liên quan đến domain hay ko. (trong System prompt có yêu cầu ko trả lời những câu hỏi ko liên quan domain hiện tại)
+- **Solution**: Thay mô hình bằng mô hình tốt hơn như GPT-5.
 
-- **Problem Description**: [e.g., Agent caught in an infinite loop with `Action: search(None)`]
-- **Log Source**: [Link or snippet from `logs/YYYY-MM-DD.log`]
-- **Diagnosis**: [Why did the LLM do this? Was it the prompt, the model, or the tool spec?]
-- **Solution**: [How did you fix it? (e.g., updated `Thought` examples in the system prompt)]
-
----
+- **Problem Description**: Prompt cũ chạy tốt cho model Gemini không hoạt động tốt với model của OpenAI.
+- **Log Source**: Lúc test trên Gemini chưa xong phần log, file kết quả thì bị ghi đè rồi... 
+- **Diagnosis**: Lý do là các mô hình được train trên bộ dữ liệu khác nhau -> Phân phối xác suất của từng mô hình khác nhau -> Cùng 1 prompt đầu vào thì kết quả sẽ khác nhau, thường là tệ hơn.
+- **Solution**: Thay mô hình phải thay prompt...
 
 ## III. Personal Insights: Chatbot vs ReAct (10 Points)
 
 *Reflect on the reasoning capability difference.*
 
 1.  **Reasoning**: How did the `Thought` block help the agent compared to a direct Chatbot answer?
+- Mô hình sẽ phân tích câu hỏi ban đầu thành chuỗi suy luận tuần tự -> giảm xác suất model đi thẳng đến câu trả lời sai.
 2.  **Reliability**: In which cases did the Agent actually perform *worse* than the Chatbot?
+- Với câu hỏi đơn giản: Chatbot trả về kết quả chính xác với thời gian ngắn, trong khi Agent cần nhiều thời gian hơn để suy nghĩ, đôi khi, kết quả sau khi dùng tool search gây nhiễu -> Agent còn có thể trả lời sai
 3.  **Observation**: How did the environment feedback (observations) influence the next steps?
-
----
+- Observation là kết quả trả về từ tool sau mỗi Action. Agent dùng kết quả này để quyết định bước tiếp theo nên trả lởi (đã có đủ thông tin) hay tiếp tục gọi tool (chưa có đủ thông tin) hay thử lại (khi tool trả về kết quả lỗi)
 
 ## IV. Future Improvements (5 Points)
 
 *How would you scale this for a production-level AI agent system?*
 
-- **Scalability**: [e.g., Use an asynchronous queue for tool calls]
-- **Safety**: [e.g., Implement a 'Supervisor' LLM to audit the agent's actions]
-- **Performance**: [e.g., Vector DB for tool retrieval in a many-tool system]
+- **Scalability**: Đóng gói bằng Docker để dễ deploy lên nhiều máy khi cần mở rộng.
+- **Safety**: Giới hạn tool chỉ được đọc dữ liệu
+- **Performance**: Cache kết quả tool cho các query giống nhau trong cùng session
 
 ---
 
