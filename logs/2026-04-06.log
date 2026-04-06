@@ -1,0 +1,28 @@
+{"timestamp": "2026-04-06T09:36:49.979591+00:00", "event": "AGENT_START", "data": {"input": "Tôi có 50 triệu VND. Nếu giá vàng SJC là 92.5 triệu/lượng, tôi mua được bao nhiêu chỉ? (1 lượng = 10 chỉ)", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:36:52.755789+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 226, "completion_tokens": 113, "total_tokens": 600, "latency_ms": 2770, "cost_estimate": 0.00033696599999999996}}
+{"timestamp": "2026-04-06T09:36:52.756182+00:00", "event": "TOOL_USAGE", "data": {"tool": "calculator", "input": "92.5 / 10"}}
+{"timestamp": "2026-04-06T09:36:54.828480+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 360, "completion_tokens": 77, "total_tokens": 497, "latency_ms": 2068, "cost_estimate": 0.00027926000000000003}}
+{"timestamp": "2026-04-06T09:36:54.828836+00:00", "event": "TOOL_USAGE", "data": {"tool": "calculator", "input": "50 / 9.25"}}
+{"timestamp": "2026-04-06T09:36:56.656979+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 460, "completion_tokens": 109, "total_tokens": 607, "latency_ms": 1824, "cost_estimate": 0.00038336}}
+{"timestamp": "2026-04-06T09:41:43.798183+00:00", "event": "AGENT_START", "data": {"input": "Tôi có 50 triệu VND. Nếu giá vàng SJC là 92.5 triệu/lượng, tôi mua được bao nhiêu chỉ? (1 lượng = 10 chỉ)", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:41:46.671550+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 226, "completion_tokens": 115, "total_tokens": 584, "latency_ms": 2867, "cost_estimate": 0.00034196599999999997}}
+{"timestamp": "2026-04-06T09:41:46.671822+00:00", "event": "TOOL_USAGE", "data": {"tool": "calculator", "input": "92.5 / 10"}}
+{"timestamp": "2026-04-06T09:41:48.294695+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 362, "completion_tokens": 71, "total_tokens": 506, "latency_ms": 1618, "cost_estimate": 0.000264742}}
+{"timestamp": "2026-04-06T09:41:48.295072+00:00", "event": "TOOL_USAGE", "data": {"tool": "calculator", "input": "50 / 9.25"}}
+{"timestamp": "2026-04-06T09:41:49.898724+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 456, "completion_tokens": 74, "total_tokens": 592, "latency_ms": 1600, "cost_estimate": 0.000294896}}
+{"timestamp": "2026-04-06T09:41:49.898960+00:00", "event": "AGENT_END", "data": {"output": "Bạn có thể mua được khoảng 5.405 chỉ vàng SJC.", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:45:46.530997+00:00", "event": "AGENT_START", "data": {"input": "Thời tiết hôm nay thế nào ?", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:45:47.918264+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 193, "completion_tokens": 47, "total_tokens": 288, "latency_ms": 1381, "cost_estimate": 0.000164013}}
+{"timestamp": "2026-04-06T09:45:47.918536+00:00", "event": "TOOL_USAGE", "data": {"tool": "search", "input": "thời tiết hôm nay"}}
+{"timestamp": "2026-04-06T09:45:55.007277+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 4916, "completion_tokens": 190, "total_tokens": 5656, "latency_ms": 4652, "cost_estimate": 0.001659756}}
+{"timestamp": "2026-04-06T09:45:55.007659+00:00", "event": "AGENT_END", "data": {"output": "Theo dự báo thời tiết hôm nay (ngày 2/4): \n- Khu vực Hà Nội và miền Bắc có nắng, nhiệt độ tăng trở lại, có mây và không mưa (ví dụ: Hà Nội 24°C - 32°C).\n- Khu vực miền Đông Nam Bộ có nắng nóng với nhiệt độ cao nhất phổ biến 35-36°C, có nơi trên 36°C, độ ẩm thấp 40-45%. Nắng nóng sau đó sẽ lan rộng khắp Trung Bộ.\n- Các khu vực như Huế, Quảng Trị có nắng nóng gay gắt với nhiệt độ cao tới 38°C.", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:48:32.140614+00:00", "event": "AGENT_START", "data": {"input": "Thời tiết hôm nay thế nào ?", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:48:33.864517+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 289, "completion_tokens": 72, "total_tokens": 416, "latency_ms": 1717, "cost_estimate": 0.000249649}}
+{"timestamp": "2026-04-06T09:48:33.864772+00:00", "event": "AGENT_END", "data": {"output": "Hiện tại tôi không tư vấn về vấn đề này", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:49:08.999935+00:00", "event": "AGENT_START", "data": {"input": "Thời tiết hôm nay thế nào ?", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:49:10.860437+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 267, "completion_tokens": 77, "total_tokens": 404, "latency_ms": 1851, "cost_estimate": 0.00025684700000000004}}
+{"timestamp": "2026-04-06T09:49:10.860752+00:00", "event": "AGENT_END", "data": {"output": "Hiện tại tôi không tư vấn về vấn đề này", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:49:46.410193+00:00", "event": "AGENT_START", "data": {"input": "Thời tiết hôm nay thế nào ?", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T09:49:48.212680+00:00", "event": "LLM_METRIC", "data": {"model": "gemini-2.5-flash", "prompt_tokens": 267, "completion_tokens": 54, "total_tokens": 383, "latency_ms": 1795, "cost_estimate": 0.000199347}}
+{"timestamp": "2026-04-06T09:49:48.212922+00:00", "event": "AGENT_END", "data": {"output": "Hiện tại tôi không tư vấn về vấn đề này", "model": "gemini-2.5-flash"}}
+{"timestamp": "2026-04-06T11:07:40.448612+00:00", "event": "AGENT_STOP", "data": {"reason": "can not connect to backend"}}
