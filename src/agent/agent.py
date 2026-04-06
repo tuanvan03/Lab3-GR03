@@ -6,6 +6,8 @@ from jinja2 import Template
 from src.agent.tools import TOOLS as agent_tools
 from src.core.llm_provider import LLMProvider
 
+from src.telemetry.logger import logger
+from src.telemetry.metrics import tracker
 
 class AgentAction:
     def __init__(self, thought: str, tool: str, tool_input: str):
@@ -78,6 +80,14 @@ class ReActAgent:
         for attempt in range(1, self.retry_count + 1):
             try:
                 result = self.llm.generate(prompt, system_prompt=self.get_system_prompt(self.tools))
+                
+                tracker.track_request(
+                    provider="google", 
+                    model=self.llm.model_name,
+                    usage=result.get("usage"),
+                    latency_ms=result.get("latency_ms")
+                )
+                
                 return result["content"]
             except Exception as exc:
                 if attempt >= self.retry_count:
@@ -132,6 +142,8 @@ class ReActAgent:
     # ------------------------------------------------------------------
 
     def _execute_tool(self, tool_name: str, tool_input: str) -> str:
+        logger.log_event("TOOL_USAGE", {"tool": tool_name, "input": tool_input})
+        
         for tool in self.tools:
             if tool["name"] == tool_name:
                 func = tool.get("func")
@@ -146,6 +158,8 @@ class ReActAgent:
     # ------------------------------------------------------------------
 
     def run(self, user_input: str) -> str:
+        logger.log_event("AGENT_START", {"input": user_input, "model": self.llm.model_name})
+        
         histories: List[str] = []
         iteration = 1
         start_time = time.time()
@@ -153,6 +167,7 @@ class ReActAgent:
         while iteration <= self.max_steps:
             # ── Stopping conditions ──────────────────────────────────
             if self.max_time is not None and (time.time() - start_time) >= self.max_time:
+                logger.log_event("AGENT_STOP", {"reason": "timeout"})
                 return "Agent stopped due to iteration/time limit"
 
             # ── Build prompt ─────────────────────────────────────────
@@ -165,12 +180,15 @@ class ReActAgent:
             parsed, success = self._parse_output(raw_text)
 
             if not success:
+                logger.error(f"Parsing Error at iteration {iteration}")
+                
                 if self.handle_parsing_errors:
                     observation = (
                         'Invalid JSON format. Respond with one of:\n'
                         '{"thought": "...", "action": "tool_name", "action_input": "..."}\n'
                         '{"thought": "...", "final_answer": "..."}'
                     )
+                    
                 else:
                     raise ValueError(f"Failed to parse LLM output:\n{raw_text}")
             elif isinstance(parsed, AgentFinish):
@@ -212,9 +230,10 @@ class ReActAgent:
                 }, ensure_ascii=False))
 
             iteration += 1
-
+        logger.log_event("AGENT_STOP", {"reason": "max steps reached"}) 
         # ── Force stop ────────────────────────────────────────────────
         if self.early_stopping == "force":
+            logger.log_event("AGENT_STOP", {"reason": "iteration/time limitreached"})
             return "Agent stopped due to iteration/time limit"
 
         return "Agent stopped without a final answer."
