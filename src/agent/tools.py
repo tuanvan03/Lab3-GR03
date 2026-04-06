@@ -88,6 +88,9 @@ def world_gold_compare():
     def compare(domestic_price: float, world_price_usd: float, usd_to_vnd_rate: float) -> str:
         """
         So sánh giá trong nước và giá thế giới quy đổi.
+        domestic_price: Giá vàng ở trong nước cho một loại vàng cụ thể
+        world_price_usd: Giá vàng ở quốc tế cho cùng loại vàng đó 
+        usd_to_vnd_rate: Tỷ giá tiền của nước đó so với Việt Nam (Không nhất thiết là usd)
         """
         try:
             domestic_price = float(domestic_price)
