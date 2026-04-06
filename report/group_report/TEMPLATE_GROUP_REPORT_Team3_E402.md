@@ -1,7 +1,7 @@
 # Group Report: Lab 3 - Production-Grade Agentic System
 
 - **Team Name**: Team3-E402
-- **Team Members**: Lê Nguyễn Thanh Binh, Ninh Quang Trí, Đoàn Quang Tuấn, Vũ Minh Khải, Dương Chí Thành
+- **Team Members**: Lê Nguyễn Thanh Binh, Ninh Quang Trí, Đoàn Văn Tuấn, Vũ Minh Khải, Dương Chí Thành
 - **Deployment Date**: 2026-04-06
 
 ---
