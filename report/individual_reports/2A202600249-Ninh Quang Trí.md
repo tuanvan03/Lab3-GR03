@@ -1,8 +1,8 @@
 # Individual Report: Lab 3 - Chatbot vs ReAct Agent
 
-- **Student Name**: [Your Name Here]
-- **Student ID**: [Your ID Here]
-- **Date**: [Date Here]
+- **Student Name**: Ninh Quang Trí
+- **Student ID**: 2A202600249
+- **Date**: 06/04/2026
 
 ---
 
@@ -10,10 +10,10 @@
 
 *Describe your specific contribution to the codebase (e.g., implemented a specific tool, fixed the parser, etc.).*
 
-- **Modules Implementated**: [e.g., `src/tools/search_tool.py`]
-- **Code Highlights**: [Copy snippets or link file lines]
-- **Documentation**: [Brief explanation of how your code interacts with the ReAct loop]
-
+- **Modules Implementated**:
+`src/telemetry/logger.py`, `src/telemetry/metrics.py`, `src/chatbot/__init__.py`, `src/agent/agent.py`
+- **Code Highlights**: `src/telemetry/logger.py` line 9, 14-20, 21-36, `src/telemetry/metrics.py` line 17, 29-31, `src/chatbot/__init__.py` line 6, 23, 74-83, `src/agent/agent.py` line 9-10, 83-90, 145, 161, 170, 183, 184, 195, 233, 236,
+- **Documentation**: Thêm class IndustryLogger the log lại các event trong quá trình, thêm dunction _calculate_cost vào class PerformanceTracker để tính chi phí mỗi lần gọi API của model Gemini-2.5-flash, lưu lại các log của các sự kiện đã xảy ra vào trong log file.
 ---
 
 ## II. Debugging Case Study (10 Points)
