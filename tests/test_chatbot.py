@@ -4,7 +4,7 @@ import time
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-os.environ["GEMINI_API_KEY"] = "AIzaSyCQECvUA8DvVDmvk1O0ExbYlfQkEWNnv58"
+
 # from dotenv import load_dotenv
 from src.core.gemini_provider import GeminiProvider
 from src.chatbot import Chatbot
