@@ -26,9 +26,26 @@ def test_agent_simple():
     print(f"Agent: {result}")
 
 
+def test_agent_out_of_scrope():
+    provider = GeminiProvider(
+        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
+        api_key=os.getenv("GEMINI_API_KEY"),
+    )
+
+    agent = ReActAgent(
+        llm=provider,
+        max_steps=5,
+    )
+
+    user_input = "Thời tiết hôm nay thế nào ?"
+    print(f"User: {user_input}")
+    result = agent.run(user_input)
+    print(f"Agent: {result}")
+
 if __name__ == "__main__":
     try:
         test_agent_simple()
+        test_agent_out_of_scrope()
     except Exception as e:
         print(f"[ERROR] {e}")
         raise
