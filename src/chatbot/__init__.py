@@ -74,7 +74,7 @@ class Chatbot:
         usage = result.get("usage")
         latency_ms = result.get("latency_ms")
         
-        logger.log_event("CHATBOT_END")
+        logger.log_event("CHATBOT_END", {"input": response, "model": self.llm.model_name})
         tracker.track_request(
             provider=self.llm,
             model=self.llm.model_name,

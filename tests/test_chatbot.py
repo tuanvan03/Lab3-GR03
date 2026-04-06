@@ -5,13 +5,13 @@ import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from src.core.gemini_provider import GeminiProvider
 from src.chatbot import Chatbot
 
 from src.telemetry.metrics import tracker
 
-# load_dotenv()
+load_dotenv()
 
 SEPARATOR = "=" * 60
 MODEL_ID = "gemini-2.5-flash"
