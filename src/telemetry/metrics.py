@@ -25,9 +25,16 @@ class PerformanceTracker:
         print(metric)
         logger.log_event("LLM_METRIC", metric)
 
-    def _calculate_cost(self, usage: Dict[str, int]) -> float:
-        input_cost = (usage.get("prompt_tokens", 0) / 1000000) * 1.25
-        output_cost = (usage.get("completion_tokens", 0) / 1000000) * 10
+    def _calculate_cost(self, model: str, usage: Dict[str, int]) -> float:
+        if model == 'gpt-4o-mini':
+            input_cost = (usage.get("prompt_tokens", 0) / 1000) * 0.00015
+            output_cost = (usage.get("completion_tokens", 0) / 1000) * 0.0006
+        if model == 'gpt-5':
+            input_cost = (usage.get("prompt_tokens", 0) / 1000000) * 1.25
+            output_cost = (usage.get("completion_tokens", 0) / 1000000) * 10
+        if model == 'gemini-2.5-flash':
+            input_cost = (usage.get("prompt_tokens", 0) / 1000000) * 1.25
+            output_cost = (usage.get("completion_tokens", 0) / 1000000) * 10
         return input_cost + output_cost
 
 # Global tracker instance
