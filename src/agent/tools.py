@@ -1,6 +1,7 @@
 import os
 from tavily import TavilyClient
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -60,9 +61,6 @@ def make_calculator_tool():
         "description": "Tính toán biểu thức số học. Input là một biểu thức như '100 * 1.05' hoặc '(200 + 50) / 3'.",
         "func": calculate,
     }
-
-import urllib.request
-import json
 
 def compare_prices():
     def compare(a_prices: float, b_prices: float) -> str:
