@@ -192,6 +192,7 @@ class ReActAgent:
                 else:
                     raise ValueError(f"Failed to parse LLM output:\n{raw_text}")
             elif isinstance(parsed, AgentFinish):
+                logger.log_event("AGENT_END", {"output": parsed.output, "model": self.llm.model_name})
                 return parsed.output
             else:
                 # ── AgentAction: tool lookup + execution ──────────────
