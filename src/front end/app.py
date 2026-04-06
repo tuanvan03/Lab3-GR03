@@ -2,6 +2,18 @@ import streamlit as st
 import requests
 from datetime import datetime
 
+import sys
+import os
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+current_file = os.path.abspath(__file__)
+parent_dir = os.path.dirname(current_file)
+grandparent_dir = os.path.dirname(parent_dir)
+
+sys.path.append(os.path.dirname(grandparent_dir))
+# print(grandparent_dir)
+
+from src.telemetry.logger import logger
+
 API_BASE = "http://localhost:8000"
 
 # ==========================================
@@ -185,10 +197,12 @@ if prompt:
             st.session_state.metrics = {"latency": latency, "steps": total_steps}
 
         except requests.exceptions.ConnectionError:
+            logger.log_event("AGENT_STOP", {"reason": "Can not connect to backend"})
             answer = "❌ Không thể kết nối tới backend. Hãy chắc chắn server đang chạy tại `http://localhost:8000`."
             add_log("system", ">> [Agent] ERROR: Connection refused")
             st.session_state.metrics = {"latency": 0, "steps": 0}
         except Exception as e:
+            logger.log_event(f"AGENT_STOP", {"reason": e})
             answer = f"❌ Lỗi: {e}"
             add_log("system", f">> [Agent] ERROR: {e}")
             st.session_state.metrics = {"latency": 0, "steps": 0}
