@@ -1,0 +1,47 @@
+[
+  {
+    "user_input": "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu? So với TP.HCM có chênh lệch không?",
+    "result": "SJC Hà Nội hiện tại: Mua vào 171,3 triệu đồng/lượng, Bán ra 174,3 triệu đồng/lượng. So với TP.HCM: Không chênh lệch (cùng mức 171,3/174,3 triệu đồng/lượng).",
+    "status": "success"
+  },
+  {
+    "user_input": "Tôi có 50 triệu, mua được bao nhiêu chỉ vàng 9999 hôm nay? Tính luôn phí chênh lệch mua - bán.",
+    "result": "Giả sử mua nhẫn 9999 theo bảng giá PNJ hiện tại (HCM): Giá bán 18.610.000 đ/chỉ, giá mua 18.310.000 đ/chỉ (chênh lệch mua-bán: 300.000 đ/chỉ).\n\n- Nếu cửa hàng cho mua lẻ 0,1 chỉ:\n  • Mua tối đa: 2,6 chỉ\n  • Tiền mua: 2,6 × 18.610.000 = 48.386.000 đ\n  • Tiền thừa: 50.000.000 − 48.386.000 = 1.614.000 đ\n  • Phí chênh lệch (nếu mua rồi bán ngay): 2,6 × 300.000 = 780.000 đ\n\n- Nếu chỉ cho mua bội số 0,5 chỉ:\n  • Mua tối đa: 2,5 chỉ\n  • Tiền mua: 2,5 × 18.610.000 = 46.525.000 đ\n  • Tiền thừa: 3.475.000 đ\n  • Phí chênh lệch: 2,5 × 300.000 = 750.000 đ\n\n- Nếu chỉ cho mua nguyên chỉ:\n  • Mua tối đa: 2 chỉ\n  • Tiền mua: 2 × 18.610.000 = 37.220.000 đ\n  • Tiền thừa: 12.780.000 đ\n  • Phí chênh lệch: 2 × 300.000 = 600.000 đ\n\nGhi chú:\n- Số chỉ thực mua phụ thuộc quy cách bán (0,1 chỉ/0,5 chỉ/1 chỉ) của cửa hàng bạn chọn.\n- Chênh lệch nêu trên là phần “hao hụt” nếu bạn mua theo giá bán ra và ngay lập tức bán lại theo giá mua vào cùng thời điểm tại PNJ.",
+    "status": "success"
+  },
+  {
+    "user_input": "Giá vàng trong nước hiện cao hơn giá thế giới bao nhiêu %? Có bị 'premium' không?",
+    "result": "Dựa trên số liệu gần nhất: SJC bán khoảng 174,500,000 VND/lượng; giá thế giới khoảng 4,750–4,800 USD/oz; tỷ giá khoảng 26,300–26,400 VND/USD. Quy đổi giá thế giới sang VND/lượng: 4,750–4,800 × 26,350 × 1.205 ≈ 151–153 triệu VND/lượng. Như vậy, giá trong nước cao hơn khoảng 14%–16% so với giá thế giới (premium dương).",
+    "status": "success"
+  },
+  {
+    "user_input": "Vì sao giá vàng thường tăng khi lạm phát tăng?",
+    "result": "Giá vàng thường tăng khi lạm phát tăng vì các cơ chế chính sau:\n- Bảo toàn sức mua: Lạm phát làm tiền pháp định mất giá; vàng có nguồn cung hữu hạn và lịch sử duy trì sức mua dài hạn, nên nhà đầu tư tìm đến như “kho giá trị”.\n- Lãi suất thực giảm: Khi lạm phát tăng nhanh hơn lãi suất danh nghĩa, lãi suất thực xuống thấp/âm, làm giảm chi phí cơ hội nắm giữ vàng (không sinh lãi), thúc đẩy cầu vàng.\n- Đồng tiền suy yếu: Lạm phát cao thường đi kèm đồng nội tệ yếu (đặc biệt USD). Vàng niêm yết bằng USD thường tăng khi USD yếu; ở trong nước, VND yếu còn khiến giá vàng quy đổi tăng thêm.\n- Nhu cầu trú ẩn/đa dạng hóa: Bất định về lạm phát và chính sách khiến nhà đầu tư và ngân hàng trung ương tăng tỷ trọng vàng, đẩy giá.\n- Cung khó tăng nhanh: Khai thác vàng mở rộng chậm, nên khi cầu tăng vì lạm phát, giá phản ứng mạnh.\n\nLưu ý: Vàng không luôn tăng đồng pha với lạm phát trong ngắn hạn. Nếu ngân hàng trung ương thắt chặt mạnh làm lãi suất thực tăng, vàng có thể giảm ngay cả khi lạm phát còn cao (ví dụ đầu thập niên 1980). Theo dõi lãi suất thực, kỳ vọng lạm phát và sức mạnh USD là chìa khóa để dự đoán hướng giá vàng.",
+    "status": "success"
+  },
+  {
+    "user_input": "Tuần này có nên mua vàng không? Phân tích giúp tôi.",
+    "result": "Tóm tắt nhanh: Giá vàng trong nước đầu tuần giảm mạnh. SJC đang quanh 170,1–173,1 triệu đồng/lượng; vàng nhẫn khoảng 169,9–172,9 triệu. Giá thế giới khoảng 4.600–4.642 USD/ounce; USD/VND bán ra khoảng 26.361. Chênh lệch trong nước – thế giới vẫn cao, đặc biệt ở SJC; biên độ biến động trong ngày lớn. Nhận định và khuyến nghị tuần: - Xu hướng ngắn hạn: Biến động mạnh, chịu ảnh hưởng dữ liệu Mỹ (PMI, PCE/CPI, biên bản Fed) và địa chính trị. Sau nhịp “bốc hơi” đầu tuần, xác suất xuất hiện các nhịp hồi/kéo-xả trong tuần là cao. - Chênh lệch/premium: SJC tiếp tục duy trì premium rất lớn so với quy đổi quốc tế; vàng nhẫn thấp hơn nhưng vẫn đắt tương đối. Rủi ro mua đuổi khi premium nới rộng. - Biên mua–bán: Spread hiện khoảng 2,8–3,0 triệu/lượng (SJC) và ~3,0 triệu/lượng (nhẫn), khiến điểm hòa vốn khó đạt trong lướt sóng ngắn. Chiến lược đề xuất: 1) Nếu đầu tư ngắn hạn/lướt sóng: - Tránh mua đuổi khi giá bật mạnh; ưu tiên “mua đỏ – bán xanh” theo vùng, chia nhỏ 2–3 phần. - Ưu tiên vàng nhẫn 9999 thay vì SJC để giảm premium và dễ thoát hàng. - Kỷ luật dừng lỗ chặt (±0,8–1,2 triệu/lượng) do spread lớn. 2) Nếu tích lũy trung–dài hạn (6–24 tháng): - Có thể giải ngân thăm dò 20–30% ở vàng nhẫn khi giá giảm mạnh trong ngày, thêm 20% ở các nhịp điều chỉnh tiếp theo. - Tránh tỷ trọng lớn ở SJC do premium cao; chỉ cân nhắc khi mục tiêu là giữ tài sản và chấp nhận chênh lệch cấu trúc. 3) Quản trị rủi ro và thời điểm: - Canh các mốc dữ liệu Mỹ tuần này; nếu USD mạnh/lợi suất tăng, giá vàng thế giới dễ chịu áp lực, chờ nhịp điều chỉnh sâu hơn để mua. - Theo dõi sát tỷ giá USD/VND; VND yếu có thể đỡ giá vàng nội địa ngay cả khi vàng thế giới giảm. - Kiểm tra giá liên ngân hàng và niêm yết thực tế tại cửa hàng trước khi giao dịch vì biến động intraday rất nhanh. Kết luận: Tuần này chưa phù hợp để “mua lớn” do premium SJC cao và biến động mạnh. Nếu cần mua, ưu tiên vàng nhẫn 9999, giải ngân thăm dò từng phần ở nhịp giảm, tránh mua đuổi; với SJC, chỉ nên tỷ trọng nhỏ và chấp nhận rủi ro chênh lệch. Bạn muốn tôi tính chênh lệch cụ thể giữa giá bạn đang được báo tại cửa hàng và giá quy đổi quốc tế theo tỷ giá bạn dùng không?",
+    "status": "success"
+  },
+  {
+    "user_input": "Giá vàng hôm nay ổn không?",
+    "result": "Không ổn lắm. Hôm nay giá SJC dao động quanh 170–174,5 triệu/lượng và vừa giảm khoảng 1–1,4 triệu/lượng, chênh lệch mua – bán khoảng 3–3,5 triệu. Giá thế giới quanh 4.6–4.7 nghìn USD/oz, thị trường khá biến động nên rủi ro cao. Bạn cần mình kiểm tra cụ thể theo thương hiệu/khu vực nào không?",
+    "status": "success"
+  },
+  {
+    "user_input": "1 lượng vàng bằng bao nhiêu gam?",
+    "result": "1 lượng (cây) vàng = 37,5 gam (tương đương 10 chỉ; 1 chỉ = 3,75 g).",
+    "status": "success"
+  },
+  {
+    "user_input": "Hiện tại vàng thế giới đang ở mức 3,500 USD/oz đúng không?",
+    "result": "Không đúng. Giá vàng thế giới hiện quanh 4,650–4,700 USD/oz (ngày 06/04/2026), cao hơn nhiều so với 3,500 USD/oz.",
+    "status": "success"
+  },
+  {
+    "user_input": "Cho tôi biết cách tối ưu thuật toán DQN để chơi game Atari Breakout hiệu quả hơn.",
+    "result": "Hiện tại tôi không tư vấn về vấn đề này",
+    "status": "success"
+  }
+]

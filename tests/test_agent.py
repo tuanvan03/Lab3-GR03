@@ -6,25 +6,40 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from dotenv import load_dotenv
 from src.core.gemini_provider import GeminiProvider
+from src.core.openai_provider import OpenAIProvider
 from src.agent.agent import ReActAgent
 
 load_dotenv()
+
+DEFAULT_PROVIDER = os.getenv("DEFAULT_PROVIDER", "openai")  # "openai" | "google"
 
 TEST_CASES = [
     "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu? So với TP.HCM có chênh lệch không?",
     "Tôi có 50 triệu, mua được bao nhiêu chỉ vàng 9999 hôm nay? Tính luôn phí chênh lệch mua - bán.",
     "Giá vàng trong nước hiện cao hơn giá thế giới bao nhiêu %? Có bị 'premium' không?",
     "Vì sao giá vàng thường tăng khi lạm phát tăng?",
-    "Cho tôi biết cách tối ưu thuật toán DQN để chơi game Atari Breakout hiệu quả hơn."
+    "Tuần này có nên mua vàng không? Phân tích giúp tôi.",
+    "Giá vàng hôm nay ổn không?",
+    "1 lượng vàng bằng bao nhiêu gam?",
+    "Hiện tại vàng thế giới đang ở mức 3,500 USD/oz đúng không?",
+    "Cho tôi biết cách tối ưu thuật toán DQN để chơi game Atari Breakout hiệu quả hơn.",
 ]
 
 
-def make_agent():
-    provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
-        api_key=os.getenv("GEMINI_API_KEY"),
+def make_provider():
+    if DEFAULT_PROVIDER == "google":
+        return GeminiProvider(
+            model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
+            api_key=os.getenv("GEMINI_API_KEY"),
+        )
+    return OpenAIProvider(
+        model_name=os.getenv("DEFAULT_MODEL", "gpt-5"),
+        api_key=os.getenv("OPENAI_API_KEY"),
     )
-    return ReActAgent(llm=provider, max_steps=5)
+
+
+def make_agent():
+    return ReActAgent(llm=make_provider(), max_steps=5)
 
 
 def run_all_tests():
@@ -46,13 +61,8 @@ def run_all_tests():
 
 
 def test_agent_out_of_scrope():
-    provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
-        api_key=os.getenv("GEMINI_API_KEY"),
-    )
-
     agent = ReActAgent(
-        llm=provider,
+        llm=make_provider(),
         max_steps=5,
     )
 
