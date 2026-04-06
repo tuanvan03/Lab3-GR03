@@ -180,8 +180,8 @@ class ReActAgent:
             parsed, success = self._parse_output(raw_text)
 
             if not success:
-                logger.error(f"Parsing Error at iteration {iteration}")
-                
+                # logger.error(f"Parsing Error at iteration {iteration}")
+                logger.log_event("AGENT_STOP", {"reason": f"Parsing Error at iteration {iteration}"}) 
                 if self.handle_parsing_errors:
                     observation = (
                         'Invalid JSON format. Respond with one of:\n'
@@ -234,7 +234,7 @@ class ReActAgent:
         logger.log_event("AGENT_STOP", {"reason": "max steps reached"}) 
         # ── Force stop ────────────────────────────────────────────────
         if self.early_stopping == "force":
-            logger.log_event("AGENT_STOP", {"reason": "iteration/time limitreached"})
+            logger.log_event("AGENT_STOP", {"reason": "iteration/time limit reached"})
             return "Agent stopped due to iteration/time limit"
 
         return "Agent stopped without a final answer."
