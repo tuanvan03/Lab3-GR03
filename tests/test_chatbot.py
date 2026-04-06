@@ -1,16 +1,20 @@
 import os
 import sys
+import time
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from dotenv import load_dotenv
+os.environ["GEMINI_API_KEY"] = "AIzaSyCQECvUA8DvVDmvk1O0ExbYlfQkEWNnv58"
+# from dotenv import load_dotenv
 from src.core.gemini_provider import GeminiProvider
 from src.chatbot import Chatbot
 
-load_dotenv()
+from src.telemetry.metrics import tracker
+
+# load_dotenv()
 
 SEPARATOR = "=" * 60
-
+MODEL_ID = "gemini-2.5-flash"
 
 def print_result(case: str, user_input: str, response: str):
     print(SEPARATOR)
@@ -23,15 +27,16 @@ def print_result(case: str, user_input: str, response: str):
 def test_without_history():
     """Case 1: Single-turn, no conversation history."""
     provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-1.5-flash"),
+        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
         api_key=os.getenv("GEMINI_API_KEY"),
     )
     chatbot = Chatbot(llm=provider)
 
     user_input = "Giá vàng SJC hôm nay là bao nhiêu và so với DOJI thì chênh lệch bao nhiêu?"
     print("\n>>> CASE 1: No History")
+
     response = chatbot.run(user_input)
-    print_result("No History", user_input, response)
+    # print_result("No History", user_input, response)
 
     return response
 
@@ -39,7 +44,7 @@ def test_without_history():
 def test_with_history():
     """Case 2: Multi-turn, passing conversation history."""
     provider = GeminiProvider(
-        model_name=os.getenv("DEFAULT_MODEL", "gemini-1.5-flash"),
+        model_name=os.getenv("DEFAULT_MODEL", "gemini-2.5-flash"),
         api_key=os.getenv("GEMINI_API_KEY"),
     )
     chatbot = Chatbot(llm=provider)
@@ -78,7 +83,8 @@ def test_with_history():
     )
     print("\n>>> CASE 2: With History (4 prior turns)")
     response = chatbot.run(user_input, history=history)
-    print_result("With History", user_input, response)
+    
+    # print_result("With History", user_input, response)
 
     return response
 
