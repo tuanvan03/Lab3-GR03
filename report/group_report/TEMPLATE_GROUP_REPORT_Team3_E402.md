@@ -47,10 +47,10 @@ Key Outcome:
 
 *Analyze the industry metrics collected during the final test run.*
 
-- **Average Latency (P50)**: [e.g., 1200ms]
-- **Max Latency (P99)**: [e.g., 4500ms]
-- **Average Tokens per Task**: [e.g., 350 tokens]
-- **Total Cost of Test Suite**: [e.g., $0.05]
+- **Average Latency (P50)**: ~ 7,500 – 10,000 ms
+- **Max Latency (P99)**: ~ 60,000 ms (≈ 61s)
+- **Average Tokens per Task**: ~ 2,000 – 4,000 tokens
+- **Total Cost of Test Suite**: ~ $0.04 – $0.06
 
 ---
 
@@ -58,10 +58,58 @@ Key Outcome:
 
 *Deep dive into why the agent failed.*
 
-### Case Study: [e.g., Hallucinated Argument]
-- **Input**: "How much is the tax for 500 in Vietnam?"
-- **Observation**: Agent called `calc_tax(amount=500, region="Asia")` while the tool only accepts 2-letter country codes.
-- **Root Cause**: The system prompt lacked enough `Few-Shot` examples for the tool's strict argument format.
+### Case Study: 
+- **Case Study 1**: Agent từ chối trả lời (Critical Failure)
+  - **Input**: "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu? So với TP.HCM có chênh lệch không?"
+  - **Observation**: 
+    - Agent gọi tool search
+    - Nhưng output cuối: "Hiện tại tôi không tư vấn về vấn đề này"
+  - **Root Cause**: 
+    - Prompt hoặc policy của agent quá restrictive
+    - Không có fallback khi:
+      - Tool trả dữ liệu không rõ ràng
+      - Hoặc parsing không thành công
+
+- **Case Study 2**: Tool dùng nhưng không trả lời được (Tool Dependency Failure)
+  - **Input**: "Tôi có 50 triệu, mua được bao nhiêu chỉ vàng 9999 hôm nay? Tính luôn phí chênh lệch mua - bán."
+  - **Observation**:
+    - Agent gọi search giá vàng
+    - Nhưng vẫn trả lời: "Hiện tại tôi không tư vấn về vấn đề này"
+  - **Root Cause**:
+    - Agent phụ thuộc tool 100%
+
+- **Case Study 3**: Parsing Error → Retry Loop (Performance Issue)
+  - **Input**: "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu?"
+  - **Observation**:
+    - Xuất hiện:
+        - ![alt text](image-1.png)
+    - Agent retry nhiều lần → latency lên ~20s+
+  - **Root Cause**:
+    - Output tool không đúng format
+    - Không có validation / error handling
+
+- **Case Study 4**: Over-reasoning (Token Explosion)
+  - **Input**: "Giá vàng hôm nay ổn không?"
+  - **Observation**:
+    - Output cực dài (~1000–2000 tokens)
+    - Phân tích sâu không cần thiết
+  - **Root Cause**:
+    - Không có giới hạn độ dài
+
+- **Case Study 5**: Chatbot outperform Agent
+  - **Input**: "Giá vàng SJC hôm nay là bao nhiêu và so với DOJI thì chênh lệch bao nhiêu?"
+  - **Observation**:
+    - Chatbot:
+      -   Không hallucinate
+      -   Hỏi lại dữ liệu → hợp lý
+    - Agent:
+      -   Tool call → fail hoặc trả lời sai/từ chối
+  - **Root Cause**:
+    - Agent:
+      -   Phụ thuộc tool
+      -   Thiếu fallback
+    - Chatbot:
+      -   Logic đơn giản nhưng ổn định
 
 ---
 
