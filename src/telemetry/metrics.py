@@ -26,8 +26,8 @@ class PerformanceTracker:
         logger.log_event("LLM_METRIC", metric)
 
     def _calculate_cost(self, usage: Dict[str, int]) -> float:
-        input_cost = (usage.get("prompt_tokens", 0) / 1000000) * 0.241
-        output_cost = (usage.get("completion_tokens", 0) / 1000000) * 2.5
+        input_cost = (usage.get("prompt_tokens", 0) / 1000000) * 1.25
+        output_cost = (usage.get("completion_tokens", 0) / 1000000) * 10
         return input_cost + output_cost
 
 # Global tracker instance

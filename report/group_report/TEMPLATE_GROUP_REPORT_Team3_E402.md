@@ -59,57 +59,79 @@ Key Outcome:
 *Deep dive into why the agent failed.*
 
 ### Case Study: 
-- **Case Study 1**: Agent từ chối trả lời (Critical Failure)
-  - **Input**: "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu? So với TP.HCM có chênh lệch không?"
+- **Case Study 1**: Khái niệm cơ bản
+  - **Input**: “Vàng 9999 là gì?”
   - **Observation**: 
-    - Agent gọi tool search
-    - Nhưng output cuối: "Hiện tại tôi không tư vấn về vấn đề này"
+    - Chatbot trả lời ngay (không cần tool)
+    - Giải thích độ tinh khiết (99.99%)
   - **Root Cause**: 
-    - Prompt hoặc policy của agent quá restrictive
-    - Không có fallback khi:
-      - Tool trả dữ liệu không rõ ràng
-      - Hoặc parsing không thành công
+    - Không cần dữ liệu realtime
+    - Không cần reasoning nhiều bước
+    - → Nhanh, rẻ, ổn định hơn Agent
 
-- **Case Study 2**: Tool dùng nhưng không trả lời được (Tool Dependency Failure)
-  - **Input**: "Tôi có 50 triệu, mua được bao nhiêu chỉ vàng 9999 hôm nay? Tính luôn phí chênh lệch mua - bán."
+- **Case Study 2**: So sánh đơn giản
+  - **Input**: “SJC và DOJI khác nhau như thế nào?”
   - **Observation**:
-    - Agent gọi search giá vàng
-    - Nhưng vẫn trả lời: "Hiện tại tôi không tư vấn về vấn đề này"
+    - Chatbot giải thích:
+      - Thương hiệu
+      - Độ phổ biến
+      - Thanh khoản
   - **Root Cause**:
-    - Agent phụ thuộc tool 100%
+      - Kiến thức tĩnh
+      - Không cần tool
+      - → Agent là overkill
 
-- **Case Study 3**: Parsing Error → Retry Loop (Performance Issue)
-  - **Input**: "Giá vàng SJC tại Hà Nội hiện tại là bao nhiêu?"
+- **Case Study 3**: So sánh giá realtime + reasoning
+  - **Input**: “Giá vàng SJC tại Hà Nội và TP.HCM hôm nay là bao nhiêu? Chênh lệch thế nào?”
   - **Observation**:
-    - Xuất hiện:
-        - ![alt text](image-1.png)
-    - Agent retry nhiều lần → latency lên ~20s+
+    - Agent:
+      - Gọi tool lấy giá 2 khu vực
+      - So sánh và tính chênh lệch
+    - Chatbot:
+      - Không có dữ liệu realtime
+      - Dễ trả lời sai hoặc outdated
   - **Root Cause**:
-    - Output tool không đúng format
-    - Không có validation / error handling
+    - Cần:
+      - Realtime data
+      - So sánh nhiều bước
+    - → Agent có grounding + reasoning, vượt trội
 
-- **Case Study 4**: Over-reasoning (Token Explosion)
+- **Case Study 4**: “Tôi có 100 triệu, nên mua vàng hay gửi tiết kiệm trong 3 tháng tới?”
   - **Input**: "Giá vàng hôm nay ổn không?"
   - **Observation**:
-    - Output cực dài (~1000–2000 tokens)
-    - Phân tích sâu không cần thiết
+    - Agent:
+      - Lấy dữ liệu:
+      - Giá vàng
+      - Xu hướng
+      - Lãi suất ngân hàng
+      - So sánh → đưa recommendation
+    - Chatbot:
+      - Trả lời chung chung
+      - Thiếu dữ liệu thực tế
   - **Root Cause**:
-    - Không có giới hạn độ dài
+    - Bài toán:
+      - Multi-source data
+      - Multi-step reasoning
+    - → Agent tạo giá trị nhờ phân tích + grounding
 
-- **Case Study 5**: Chatbot outperform Agent
-  - **Input**: "Giá vàng SJC hôm nay là bao nhiêu và so với DOJI thì chênh lệch bao nhiêu?"
+- **Case Study 5**: Edge Case (Ambiguous Input)
+  - **Input**: “Giá vàng hôm nay ổn không?”
   - **Observation**:
-    - Chatbot:
-      -   Không hallucinate
-      -   Hỏi lại dữ liệu → hợp lý
-    - Agent:
-      -   Tool call → fail hoặc trả lời sai/từ chối
+    - Input mơ hồ:
+      - “Ổn” không rõ nghĩa
+    - Hệ thống tốt:
+      - Hỏi lại: “Bạn muốn đánh giá theo tiêu chí nào?”
+    - Hệ thống lỗi:
+      - Trả lời bừa
+      - Hoặc phân tích dài dòng không cần thiết
   - **Root Cause**:
-    - Agent:
-      -   Phụ thuộc tool
-      -   Thiếu fallback
-    - Chatbot:
-      -   Logic đơn giản nhưng ổn định
+    - Input:
+      - Thiếu context / unclear intent
+    - Nếu không có:
+      - Clarification step
+      - → dễ:
+      - Hallucination
+      - Over-reasoning
 
 ---
 
