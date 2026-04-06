@@ -180,8 +180,8 @@ class ReActAgent:
             parsed, success = self._parse_output(raw_text)
 
             if not success:
-                logger.error(f"Parsing Error at iteration {iteration}")
-                
+                # logger.error(f"Parsing Error at iteration {iteration}")
+                logger.log_event("AGENT_STOP", {"reason": f"Parsing Error at iteration {iteration}"}) 
                 if self.handle_parsing_errors:
                     observation = (
                         'Invalid JSON format. Respond with one of:\n'
