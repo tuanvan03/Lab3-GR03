@@ -3,7 +3,7 @@ import re
 from typing import List, Dict, Any, Optional
 from src.core.llm_provider import LLMProvider
 from src.telemetry.logger import logger
-
+from src.telemetry.metrics import tracker
 class Chatbot:
     def __init__(self, llm: LLMProvider):
         self.llm = llm
@@ -69,12 +69,17 @@ class Chatbot:
         prompt = "\n".join(prompt_parts)
 
         result = self.llm.generate(prompt, system_prompt=system_prompt)
+        # print(result)
         response = result["content"]
-
-        logger.log_event("CHATBOT_END", {
-            "usage": result.get("usage"),
-            "latency_ms": result.get("latency_ms")
-        })
-
+        usage = result.get("usage")
+        latency_ms = result.get("latency_ms")
+        
+        logger.log_event("CHATBOT_END", {"output": response, "model": self.llm.model_name})
+        tracker.track_request(
+            provider=self.llm,
+            model=self.llm.model_name,
+            usage=usage,
+            latency_ms=latency_ms
+        )
         return response
 
